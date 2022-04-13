@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "styled-components.vscode-styled-components",
-    "formulahendry.auto-rename-tag"
+    "formulahendry.auto-rename-tag",
+    "BriteSnow.vscode-toggle-quotes"
   ]
 }
