@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = styled.createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
