@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { MdFavoriteBorder } from 'react-icons/md';
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Article, ImgWrapper, Button, Img } from './styles';
 
 const DEFAULT_IMG =
@@ -8,6 +8,17 @@ const DEFAULT_IMG =
 export function PhotoCard({ id, src = DEFAULT_IMG, likes = 0 }) {
   const elRef = useRef(null);
   const [show, setShow] = useState(false);
+  const key = `like-${id}`;
+
+  const [liked, setLiked] = useState(() => {
+    try {
+      const like = window.localStorage.getItem(key);
+      console.log('getting from local storage', like);
+      return like;
+    } catch (error) {
+      return false;
+    }
+  });
 
   useEffect(() => {
     Promise.resolve(
@@ -26,6 +37,18 @@ export function PhotoCard({ id, src = DEFAULT_IMG, likes = 0 }) {
     });
   }, [elRef]);
 
+  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+
+  const setLocalStorage = (value) => {
+    try {
+      console.log('saving in local storage', value);
+      window.localStorage.setItem(key, value);
+      setLiked(value);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Article ref={elRef}>
       {show && (
@@ -35,8 +58,8 @@ export function PhotoCard({ id, src = DEFAULT_IMG, likes = 0 }) {
               <Img src={src} alt={src} />
             </ImgWrapper>
           </a>
-          <Button>
-            <MdFavoriteBorder size="32px" />
+          <Button onClick={() => setLocalStorage(!liked)}>
+            <Icon size="32px" />
             {likes} likes
           </Button>
         </>
