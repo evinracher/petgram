@@ -4,17 +4,28 @@ import { List, Item } from './styles';
 
 const API_URL = 'https://petgram-server-evinracher.vercel.app';
 
-export function ListOfCategories() {
+function useCategoriesData() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${API_URL}/categories`)
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  return { categories, loading };
+}
+
+export function ListOfCategories() {
+  const { categories, loading } = useCategoriesData();
   const [showFixed, setShowFixed] = useState(false);
   const showFixedRef = useRef();
   showFixedRef.current = showFixed;
-
-  useEffect(() => {
-    fetch(`${API_URL}/categories`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -32,7 +43,7 @@ export function ListOfCategories() {
   }, []);
 
   const renderList = (fixed) => (
-    <List className={fixed ? 'fixed' : ''}>
+    <List fixed={fixed}>
       {categories.map((category) => (
         <Item key={category.id}>
           <Category {...category} />
