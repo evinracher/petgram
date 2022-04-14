@@ -4,6 +4,7 @@ import { Logo } from './components/Logo';
 import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery';
 import { Home } from './pages/Home';
 import { Detail } from './pages/Detail';
+import { NavBar } from './components/NavBar';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Home path="/pet/:id" />
         <Detail path="/detail/:detailId" />
       </Router>
+      <NavBar />
     </>
   );
 }
