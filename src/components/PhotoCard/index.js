@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 import { Article, ImgWrapper, Img } from './styles';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useNearScreen } from '../../hooks/useNearScreen';
@@ -23,11 +24,11 @@ export function PhotoCard({ id, src = DEFAULT_IMG, likes = 0 }) {
     <Article ref={elRef}>
       {show && (
         <>
-          <a href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} alt={src} />
             </ImgWrapper>
-          </a>
+          </Link>
           <LikeButton {...{ liked, likes }} onClick={handleLike} />
         </>
       )}
