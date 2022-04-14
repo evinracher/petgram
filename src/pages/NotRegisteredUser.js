@@ -5,7 +5,10 @@ import Context from '../Context';
 export function NotRegisteredUser() {
   return (
     <Context.Consumer>
-      {({ activateAuth }) => <UserForm onSubmit={activateAuth} />}
+      {({ activateAuth }) => [
+        <UserForm title="Register" onSubmit={activateAuth} />,
+        <UserForm title="Log in" onSubmit={activateAuth} />,
+      ]}
     </Context.Consumer>
   );
 }
