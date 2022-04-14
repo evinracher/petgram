@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack-dev-server --mode=development",
+    "dev": "webpack-dev-server --mode=development --history-api-fallback",
     "lint": "eslint src",
     "format": "prettier --write ."
   },
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@reach/router": "^1.3.4",
     "graphql": "^16.3.0",
     "intersection-observer": "^0.12.0",
     "react": "^18.0.0",
