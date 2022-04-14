@@ -4,21 +4,29 @@ import { useRegisterMutation } from '../containers/useRegisterMutation';
 import Context from '../Context';
 
 export function NotRegisteredUser() {
-  const { signIn } = useRegisterMutation();
+  const { signIn, loading, error } = useRegisterMutation();
 
   return (
     <Context.Consumer>
       {({ activateAuth }) => {
-        const onSubmit = (email, password) => {
+        const onRegister = (email, password) => {
           signIn({ variables: { input: { email, password } } }).then(
             activateAuth
           );
         };
 
+        const errorMsg =
+          error && 'There was an error while registering the user';
+
         return (
           <>
-            <UserForm title="Register" onSubmit={onSubmit} />,
-            <UserForm title="Log in" onSubmit={onSubmit} />,
+            <UserForm
+              title="Register"
+              error={errorMsg}
+              disabled={loading}
+              onSubmit={onRegister}
+            />
+            <UserForm title="Log in" onSubmit={onRegister} />
           </>
         );
       }}
