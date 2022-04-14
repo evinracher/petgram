@@ -1,11 +1,14 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import { Logo } from './components/Logo';
-import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery';
 import { Home } from './pages/Home';
 import { Detail } from './pages/Detail';
 import { NavBar } from './components/NavBar';
+import { Profile } from './pages/Profile';
+import { Favorites } from './pages/Favorites';
+import { NotRegisteredUser } from './pages/NotRegisteredUser';
 import { GlobalStyles } from './styles/GlobalStyles';
+import Context from './Context';
 
 function App() {
   return (
@@ -17,6 +20,22 @@ function App() {
         <Home path="/pet/:id" />
         <Detail path="/detail/:detailId" />
       </Router>
+      <Context.Consumer>
+        {({ isAuth }) =>
+          isAuth ? (
+            <Router>
+              <Favorites path="/favorites" />
+              <Profile path="/profile" />
+            </Router>
+          ) : (
+            <Router>
+              <NotRegisteredUser path="/favorites" />
+              <NotRegisteredUser path="/profile" />
+            </Router>
+          )
+        }
+      </Context.Consumer>
+
       <NavBar />
     </>
   );
