@@ -14,12 +14,19 @@ const getPhoto = gql`
 `;
 
 export function PhotoCardWithQuery({ id }) {
-  const { data } = useQuery(getPhoto, {
+  const result = useQuery(getPhoto, {
     variables: {
       id,
     },
   });
-  if (data?.photo) {
-    return <PhotoCard {...data.photo} />;
+  const { loading, error, data } = result;
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
+
+  if (error) {
+    return <p>Error</p>;
+  }
+  return <PhotoCard {...data.photo} />;
 }
