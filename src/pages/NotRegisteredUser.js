@@ -1,14 +1,11 @@
 import React from 'react';
+import { UserForm } from '../components/UserForm';
 import Context from '../Context';
 
 export function NotRegisteredUser() {
   return (
     <Context.Consumer>
-      {({ activateAuth }) => (
-        <form onSubmit={activateAuth}>
-          <button type="submit">Log in</button>
-        </form>
-      )}
+      {({ activateAuth }) => <UserForm onSubmit={activateAuth} />}
     </Context.Consumer>
   );
 }
