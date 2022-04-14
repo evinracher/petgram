@@ -2,13 +2,16 @@ import React from 'react';
 import { useInputValue } from '../../hooks/useInputValue';
 import { Form, Input, Button, Title, Error } from './styles';
 
-export function UserForm({ title, error, disabled, onSubmit }) {
+export function UserForm({ title, mutation, errorMsg, next }) {
+  const { action, loading, error } = mutation();
   const email = useInputValue('');
   const password = useInputValue('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(email.value, password.value);
+    action({
+      variables: { input: { email: email.value, password: password.value } },
+    }).then(next);
   };
 
   return (
@@ -22,11 +25,11 @@ export function UserForm({ title, error, disabled, onSubmit }) {
           onChange={email.onChange}
         />
         <Input type="password" placeholder="Password" {...password} />
-        <Button type="submit" disabled={disabled}>
+        <Button type="submit" disabled={loading}>
           {title}
         </Button>
       </Form>
-      {error && <Error>{error}</Error>}
+      {error && <Error>{errorMsg}</Error>}
     </>
   );
 }
