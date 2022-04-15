@@ -4,14 +4,16 @@ export const Context = createContext();
 
 const Provider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(
-    () => window.sessionStorage.getItem('token') !== null
+    () => window.sessionStorage.getItem('token') != null
   );
 
   const value = {
     isAuth,
     activateAuth: (token) => {
-      setIsAuth(true);
-      window.sessionStorage.setItem('token', token);
+      if (token) {
+        setIsAuth(true);
+        window.sessionStorage.setItem('token', token);
+      }
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
