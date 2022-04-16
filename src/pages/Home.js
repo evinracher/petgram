@@ -20,5 +20,5 @@ function HomePage({ id }) {
 }
 
 export const Home = React.memo(HomePage, (prevProps, currProps) => {
-  return prevProps.id === props.id;
+  return prevProps.id === currProps.id;
 });

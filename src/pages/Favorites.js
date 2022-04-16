@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { ListOfFavorites } from '../components/LisfOfFavorites';
 import { useFavorites } from '../containers/useFavorites';
 
-export function Favorites() {
+export default function Favorites() {
   const { favorites, loading, error } = useFavorites();
 
   const render = () => {
