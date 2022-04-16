@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from '@reach/router';
 import { Article, ImgWrapper, Img } from './styles';
 import { useNearScreen } from '../../hooks/useNearScreen';
 import LikeButton from '../LikeButton';
 import useToggleLikeMutation from '../../containers/useToggleLikeMutation';
+import { Context } from '../../Context';
 
 const DEFAULT_IMG =
   'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png';
@@ -11,6 +12,7 @@ const DEFAULT_IMG =
 export function PhotoCard({ id, src = DEFAULT_IMG, liked = false, likes = 0 }) {
   const [show, elRef] = useNearScreen();
   const { mutation } = useToggleLikeMutation();
+  const { isAuth } = useContext(Context);
 
   const handleLike = () => {
     mutation({ variables: { input: { id } } });
@@ -25,7 +27,11 @@ export function PhotoCard({ id, src = DEFAULT_IMG, liked = false, likes = 0 }) {
               <Img src={src} alt={src} />
             </ImgWrapper>
           </Link>
-          <LikeButton {...{ liked, likes }} onClick={handleLike} />
+          <LikeButton
+            {...{ liked, likes }}
+            onClick={handleLike}
+            disabled={!isAuth}
+          />
         </>
       )}
     </Article>

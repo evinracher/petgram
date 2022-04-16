@@ -5,18 +5,25 @@ import { useFavorites } from '../containers/useFavorites';
 export function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const { data, loading, error } = useFavorites();
+  const [state, setState] = useState({
+    loading: false,
+    error: false,
+  });
 
   useEffect(() => {
+    setState({ ...state, loading });
     if (data?.favs) {
+      console.log('rendering');
       setFavorites(data.favs);
+      setState({ loading, error });
     }
-  }, [data]);
+  }, [state]);
 
-  if (loading) {
+  if (state.loading) {
     return <h2>Loading...</h2>;
   }
 
-  if (error) {
+  if (state.error) {
     return <h2>Error loading favorites</h2>;
   }
 

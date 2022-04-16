@@ -1,6 +1,7 @@
 import React from 'react';
 import { useInputValue } from '../../hooks/useInputValue';
-import { Form, Input, Button, Title, Error } from './styles';
+import { SubmitButton } from '../SubmitButton';
+import { Form, Input, Title, Error } from './styles';
 
 export function UserForm({ title, mutation, errorMsg, next }) {
   const { action, loading, error } = mutation();
@@ -25,9 +26,7 @@ export function UserForm({ title, mutation, errorMsg, next }) {
           onChange={email.onChange}
         />
         <Input type="password" placeholder="Password" {...password} />
-        <Button type="submit" disabled={loading}>
-          {title}
-        </Button>
+        <SubmitButton disabled={loading}>{title}</SubmitButton>
       </Form>
       {error && <Error>{errorMsg}</Error>}
     </>

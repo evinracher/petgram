@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Router } from '@reach/router';
 import { Logo } from './components/Logo';
 import { Home } from './pages/Home';
@@ -8,7 +8,7 @@ import { Profile } from './pages/Profile';
 import { Favorites } from './pages/Favorites';
 import { NotRegisteredUser } from './pages/NotRegisteredUser';
 import { GlobalStyles } from './styles/GlobalStyles';
-import Context from './Context';
+import AppContext, { Context } from './Context';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Home path="/pet/:id" />
         <Detail path="/detail/:detailId" />
       </Router>
-      <Context.Consumer>
+      <AppContext.Consumer>
         {({ isAuth }) =>
           isAuth ? (
             <Router>
@@ -34,7 +34,7 @@ function App() {
             </Router>
           )
         }
-      </Context.Consumer>
+      </AppContext.Consumer>
 
       <NavBar />
     </>

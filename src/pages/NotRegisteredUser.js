@@ -13,8 +13,8 @@ export function NotRegisteredUser() {
         mutation={useRegisterMutation}
         errorMsg="There was an error while registering the user"
         next={({ data }) => {
-          const { signUp } = data;
-          activateAuth(signUp);
+          const { signup } = data;
+          activateAuth(signup);
         }}
       />
       <UserForm

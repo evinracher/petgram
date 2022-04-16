@@ -10,13 +10,20 @@ const Provider = ({ children }) => {
   const value = {
     isAuth,
     activateAuth: (token) => {
+      console.log(token);
       if (token) {
         setIsAuth(true);
         window.sessionStorage.setItem('token', token);
       }
     },
+    removeAuth: () => {
+      setIsAuth(false), window.sessionStorage.removeItem('token');
+    },
   };
+
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export default { Provider, Consumer: Context.Consumer };
+const AppContext = { Provider, Consumer: Context.Consumer };
+
+export default AppContext;
