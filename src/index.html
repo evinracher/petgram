@@ -10,7 +10,21 @@
     <body>
         <div id="app"></div>
         <noscript>
-            <h3>This app requires JS to work</h3>
+            <h3>This app requires JavaScript to work</h3>
         </noscript>
+        <script>
+            // checking compatibility
+            if('serviceWorker' in navigator){
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered')
+                    })
+                    .catch(registrationError => {
+                        console.log('SW error', registrationError)
+                    })
+                })
+            }
+        </script>
     </body>
 </html>
