@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Grid, Image } from './styles';
 
 export const ListOfFavorites = ({ favorites = [] }) => {
-  console.log(favorites);
   return (
     <Grid>
       {favorites.map((item) => (

@@ -7,7 +7,6 @@ export function Home({ id }) {
   const { removeAuth } = useContext(Context);
 
   useEffect(() => {
-    console.log('rendering');
     const token = window.sessionStorage.getItem('token');
     if (!token) {
       removeAuth();
