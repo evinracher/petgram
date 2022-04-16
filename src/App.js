@@ -35,7 +35,6 @@ function App() {
           )
         }
       </AppContext.Consumer>
-
       <NavBar />
     </>
   );
