@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { ListOfCategories } from '../components/ListOfCategories';
 import { ListOfPhotoCards } from '../containers/ListOfPhotoCards';
 
-export function Home({ id }) {
+function HomePage({ id }) {
   return (
     <>
       <Helmet>
@@ -18,3 +18,7 @@ export function Home({ id }) {
     </>
   );
 }
+
+export const Home = React.memo(HomePage, (prevProps, currProps) => {
+  return prevProps.id === props.id;
+});

@@ -8,7 +8,8 @@
     "build": "webpack",
     "dev": "webpack-dev-server --mode=development --history-api-fallback",
     "lint": "eslint src",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "serve:dev": "webpack --mode=development && npx serve dist -s"
   },
   "repository": {
     "type": "git",
