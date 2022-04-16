@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from '@reach/router';
+import PropTypes from 'prop-types';
 import { Article, ImgWrapper, Img } from './styles';
 import { useNearScreen } from '../../hooks/useNearScreen';
 import LikeButton from '../LikeButton';
@@ -37,3 +38,19 @@ export function PhotoCard({ id, src = DEFAULT_IMG, liked = false, likes = 0 }) {
     </Article>
   );
 }
+
+PhotoCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  liked: PropTypes.bool.isRequired,
+  src: PropTypes.string.isRequired,
+  likes: function (props, propName, componentName) {
+    const propValue = props[propName];
+    if (propValue === undefined) {
+      return new Error(`${propName} value must be defined`);
+    }
+
+    if (propValue < 0) {
+      return new Error(`${propName} value must be greater than zero`);
+    }
+  },
+};

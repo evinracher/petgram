@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import PropTypes from 'prop-types';
 import { Button } from './styles';
 
 export default function LikeButton({ liked, likes, onClick, disabled }) {
@@ -11,3 +12,9 @@ export default function LikeButton({ liked, likes, onClick, disabled }) {
     </Button>
   );
 }
+
+LikeButton.propTypes = {
+  liked: PropTypes.bool.isRequired,
+  likes: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
