@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, Grid, Image } from './styles';
 import PropTypes from 'prop-types';
+import { Link, Grid, Image } from './styles';
 
 export const ListOfFavorites = ({ favorites = [] }) => {
   return (
