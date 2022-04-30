@@ -6,4 +6,4 @@ Deployed in: https://petgram-evinracher.vercel.app/
 - PWA support
 - Add to home screen
 
-Made following this <a href="https://platzi.com/cursos/react-avanzado/" target="_blank">course</a>
+Made during this <a href="https://platzi.com/cursos/react-avanzado/" target="_blank">course</a>
