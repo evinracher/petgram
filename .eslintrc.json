@@ -23,6 +23,7 @@
     "react/prop-types": "off",
     "react/function-component-definition": "off",
     "no-confusing-arrow": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/jsx-props-no-spreading": "off"
   }
 }

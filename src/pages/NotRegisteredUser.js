@@ -7,7 +7,7 @@ import { Context } from '../Context';
 export function NotRegisteredUser() {
   const { activateAuth } = useContext(Context);
   return (
-    <>
+    <div className="container">
       <UserForm
         title="Register"
         mutation={useRegisterMutation}
@@ -26,6 +26,6 @@ export function NotRegisteredUser() {
           activateAuth(login);
         }}
       />
-    </>
+    </div>
   );
 }

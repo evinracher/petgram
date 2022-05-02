@@ -7,10 +7,7 @@ import LikeButton from '../LikeButton';
 import useToggleLikeMutation from '../../containers/useToggleLikeMutation';
 import { Context } from '../../Context';
 
-const DEFAULT_IMG =
-  'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png';
-
-export function PhotoCard({ id, src = DEFAULT_IMG, liked = false, likes = 0 }) {
+export function PhotoCard({ id, src, liked, likes }) {
   const [show, elRef] = useNearScreen();
   const { mutation } = useToggleLikeMutation();
   const { isAuth } = useContext(Context);
@@ -43,7 +40,7 @@ PhotoCard.propTypes = {
   id: PropTypes.string.isRequired,
   liked: PropTypes.bool.isRequired,
   src: PropTypes.string.isRequired,
-  likes: function (props, propName, componentName) {
+  likes: (props, propName) => {
     const propValue = props[propName];
     if (propValue === undefined) {
       return new Error(`${propName} value must be defined`);
@@ -52,5 +49,11 @@ PhotoCard.propTypes = {
     if (propValue < 0) {
       return new Error(`${propName} value must be greater than zero`);
     }
+
+    return null;
   },
+};
+
+PhotoCard.defaultProps = {
+  likes: 0,
 };

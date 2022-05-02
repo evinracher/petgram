@@ -27,7 +27,7 @@ export default function Favorites() {
           content="Here you can find your favorite photos"
         />
       </Helmet>
-      {render()}
+      <div className="container">{render()}</div>
     </>
   );
 }

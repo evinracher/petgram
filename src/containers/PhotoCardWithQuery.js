@@ -9,6 +9,7 @@ const getPhoto = gql`
       categoryId
       src
       likes
+      liked
     }
   }
 `;

@@ -5,7 +5,7 @@ import { Context } from '../Context';
 export function Profile() {
   const { removeAuth } = useContext(Context);
   return (
-    <div>
+    <div className="container">
       <h1>User</h1>
       <SubmitButton type="button" onClick={removeAuth}>
         Log out
